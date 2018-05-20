@@ -1,0 +1,631 @@
+# Docker
+cd c:
+cd Users/Admin/Downloads/
+[2018-05-19 23:58.45]  /drives/c/Users/Admin/Downloads
+[Admin.Admin-PC] ➤ ssh -i "DockerPractice.pem" ec2-user@ec2-18-191-46-90.us-east-2.compute.amazonaws.com
+X11 forwarding request failed on channel 0
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+6 package(s) needed for security, out of 7 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-38-10 ~]$ sudo su -
+[root@ip-172-31-38-10 ~]# yum install docker
+Loaded plugins: priorities, update-motd, upgrade-helper
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 0:17.12.1ce-1.135.amzn1 will be installed
+--> Processing Dependency: xfsprogs for package: docker-17.12.1ce-1.135.amzn1.x86_64
+--> Processing Dependency: libseccomp.so.2()(64bit) for package: docker-17.12.1ce-1.135.amzn1.x86_64
+--> Processing Dependency: libltdl.so.7()(64bit) for package: docker-17.12.1ce-1.135.amzn1.x86_64
+--> Running transaction check
+---> Package libseccomp.x86_64 0:2.3.1-2.4.amzn1 will be installed
+---> Package libtool-ltdl.x86_64 0:2.4.2-20.4.8.5.32.amzn1 will be installed
+---> Package xfsprogs.x86_64 0:4.5.0-9.21.amzn1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=======================================================================================================================================
+ Package                         Arch                      Version                                    Repository                  Size
+=========================================================================================================================================
+Installing:
+ docker                          x86_64                    17.12.1ce-1.135.amzn1                      amzn-main                     34 M
+Installing for dependencies:
+ libseccomp                      x86_64                    2.3.1-2.4.amzn1                            amzn-main                     79 k
+ libtool-ltdl                    x86_64                    2.4.2-20.4.8.5.32.amzn1                    amzn-main                     51 k
+ xfsprogs                        x86_64                    4.5.0-9.21.amzn1                           amzn-main                    1.7 M
+
+Transaction Summary
+=========================================================================================================================================
+Install  1 Package (+3 Dependent packages)
+
+Total download size: 36 M
+Installed size: 114 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/4): libseccomp-2.3.1-2.4.amzn1.x86_64.rpm                                                                      |  79 kB  00:00:00
+(2/4): libtool-ltdl-2.4.2-20.4.8.5.32.amzn1.x86_64.rpm                                                            |  51 kB  00:00:00
+(3/4): xfsprogs-4.5.0-9.21.amzn1.x86_64.rpm                                                                       | 1.7 MB  00:00:00
+(4/4): docker-17.12.1ce-1.135.amzn1.x86_64.rpm                                                                    |  34 MB  00:00:00
+-----------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                     36 MB/s |  36 MB  00:00:01
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libseccomp-2.3.1-2.4.amzn1.x86_64                                                                                     1/4
+  Installing : libtool-ltdl-2.4.2-20.4.8.5.32.amzn1.x86_64                                                                           2/4
+  Installing : xfsprogs-4.5.0-9.21.amzn1.x86_64                                                                                      3/4
+  Installing : docker-17.12.1ce-1.135.amzn1.x86_64                                                                                   4/4
+  Verifying  : xfsprogs-4.5.0-9.21.amzn1.x86_64                                                                                      1/4
+  Verifying  : docker-17.12.1ce-1.135.amzn1.x86_64                                                                                   2/4
+  Verifying  : libtool-ltdl-2.4.2-20.4.8.5.32.amzn1.x86_64                                                                           3/4
+  Verifying  : libseccomp-2.3.1-2.4.amzn1.x86_64                                                                                     4/4
+
+Installed:
+  docker.x86_64 0:17.12.1ce-1.135.amzn1
+
+Dependency Installed:
+  libseccomp.x86_64 0:2.3.1-2.4.amzn1       libtool-ltdl.x86_64 0:2.4.2-20.4.8.5.32.amzn1       xfsprogs.x86_64 0:4.5.0-9.21.amzn1
+
+Complete!
+[root@ip-172-31-38-10 ~]# service docker start
+Starting cgconfig service:                                 [  OK  ]
+Starting docker:        .                                  [  OK  ]
+[root@ip-172-31-38-10 ~]# docker --help
+
+Usage:  docker COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default
+                           "/root/.docker")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level
+                           ("debug"|"info"|"warn"|"error"|"fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  config      Manage Docker configs
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images (experimental)
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a runnin                                                         g container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesyste                                                         m
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by de                                                         fault)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit cod                                                         es
+
+Run 'docker COMMAND --help' for more information on a command.
+[root@ip-172-31-38-10 ~]# docker search --help
+
+Usage:  docker search [OPTIONS] TERM
+
+Search the Docker Hub for images
+
+Options:
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print search using a Go template
+      --limit int       Max number of search results (default 25)
+      --no-trunc        Don't truncate output
+[root@ip-172-31-38-10 ~]# docker version
+Client:
+ Version:       17.12.1-ce
+ API version:   1.35
+ Go version:    go1.9.4
+ Git commit:    3dfb8343b139d6342acfd9975d7f1068b5b1c3d3
+ Built: Tue Apr  3 23:37:44 2018
+ OS/Arch:       linux/amd64
+
+Server:
+ Engine:
+  Version:      17.12.1-ce
+  API version:  1.35 (minimum version 1.12)
+  Go version:   go1.9.4
+  Git commit:   7390fc6/17.12.1-ce
+  Built:        Tue Apr  3 23:38:52 2018
+  OS/Arch:      linux/amd64
+  Experimental: false
+[root@ip-172-31-38-10 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+[root@ip-172-31-38-10 ~]# docker search ubuntu
+NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   7697                [OK]       
+dorowu/ubuntu-desktop-lxde-vnc                            Ubuntu with openssh-server and NoVNC            182                                     [OK]
+rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   147                                     [OK]
+ansible/ubuntu14.04-ansible                               Ubuntu 14.04 LTS with ansible                   91                                      [OK]
+ubuntu-upstart                                            Upstart is an event-based replacement for th…   86                  [OK]       
+neurodebian                                               NeuroDebian provides neuroscience research s…   50                  [OK]       
+ubuntu-debootstrap                                        debootstrap --variant=minbase --components=m…   38                  [OK]       
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5      ubuntu-16-nginx-php-phpmyadmin-mysql-5          35                                      [OK]
+nuagebec/ubuntu                                           Simple always updated Ubuntu docker images w…   23                                      [OK]
+tutum/ubuntu                                              Simple Ubuntu docker images with SSH access     18                             
+i386/ubuntu                                               Ubuntu is a Debian-based Linux operating sys…   13                             
+ppc64le/ubuntu                                            Ubuntu is a Debian-based Linux operating sys…   12                             
+1and1internet/ubuntu-16-apache-php-7.0                    ubuntu-16-apache-php-7.0                        9                                       [OK]
+eclipse/ubuntu_jdk8                                       Ubuntu, JDK8, Maven 3, git, curl, nmap, mc, …   6                                       [OK]
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mariadb-10   ubuntu-16-nginx-php-phpmyadmin-mariadb-10       4                                       [OK]
+codenvy/ubuntu_jdk8                                       Ubuntu, JDK8, Maven 3, git, curl, nmap, mc, …   4                                       [OK]
+1and1internet/ubuntu-16-nginx-php-5.6-wordpress-4         ubuntu-16-nginx-php-5.6-wordpress-4             3                                       [OK]
+darksheer/ubuntu                                          Base Ubuntu Image -- Updated hourly             3                                       [OK]
+1and1internet/ubuntu-16-apache                            ubuntu-16-apache                                3                                       [OK]
+1and1internet/ubuntu-16-sshd                              ubuntu-16-sshd                                  1                                       [OK]
+pivotaldata/ubuntu                                        A quick freshening-up of the base Ubuntu doc…   1                              
+1and1internet/ubuntu-16-healthcheck                       ubuntu-16-healthcheck                           0                                       [OK]
+pivotaldata/ubuntu-gpdb-dev                               Ubuntu images for GPDB development              0                              
+smartentry/ubuntu                                         ubuntu with smartentry                          0                                       [OK]
+ossobv/ubuntu                                             Custom ubuntu image from scratch (based on o…   0                              
+[root@ip-172-31-38-10 ~]# docker version
+Client:
+ Version:       17.12.1-ce
+ API version:   1.35
+ Go version:    go1.9.4
+ Git commit:    3dfb8343b139d6342acfd9975d7f1068b5b1c3d3
+ Built: Tue Apr  3 23:37:44 2018
+ OS/Arch:       linux/amd64
+
+Server:
+ Engine:
+  Version:      17.12.1-ce
+  API version:  1.35 (minimum version 1.12)
+  Go version:   go1.9.4
+  Git commit:   7390fc6/17.12.1-ce
+  Built:        Tue Apr  3 23:38:52 2018
+  OS/Arch:      linux/amd64
+  Experimental: false
+[root@ip-172-31-38-10 ~]# docker pull tutum/ubuntu
+Using default tag: latest
+latest: Pulling from tutum/ubuntu
+faecf96fd5ab: Pull complete
+995977506e98: Pull complete
+efb63fb8dcb6: Pull complete
+a3ed95caeb02: Pull complete
+111dff53d21f: Pull complete
+81f956504bf5: Pull complete
+439a61f07659: Pull complete
+e792d68ea57d: Pull complete
+b1873342e42c: Pull complete
+Digest: sha256:b9a594f451f9f32f8541745c79c546f00148eb0a934c53ae3a6a84f684f95005
+Status: Downloaded newer image for tutum/ubuntu:latest
+[root@ip-172-31-38-10 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+tutum/ubuntu        latest              7315f90732f7        2 years ago         252MB
+[root@ip-172-31-38-10 ~]# docker pull centos
+Using default tag: latest
+latest: Pulling from library/centos
+469cfcc7a4b3: Pull complete
+Digest: sha256:989b936d56b1ace20ddf855a301741e52abca38286382cba7f44443210e96d16
+Status: Downloaded newer image for centos:latest
+[root@ip-172-31-38-10 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+centos              latest              e934aafc2206        6 weeks ago         199MB
+tutum/ubuntu        latest              7315f90732f7        2 years ago         252MB
+[root@ip-172-31-38-10 ~]# docker rmi centos
+Untagged: centos:latest
+Untagged: centos@sha256:989b936d56b1ace20ddf855a301741e52abca38286382cba7f44443210e96d16
+Deleted: sha256:e934aafc22064b7322c0250f1e32e5ce93b2d19b356f4537f5864bd102e8531f
+Deleted: sha256:43e653f84b79ba52711b0f726ff5a7fd1162ae9df4be76ca1de8370b8bbf9bb0
+[root@ip-172-31-38-10 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+tutum/ubuntu        latest              7315f90732f7        2 years ago         252MB
+[root@ip-172-31-38-10 ~]# docker run -i -t tutum/ubuntu:latest /bin/bash
+root@76bf7189e4be:/# exit
+exit
+[root@ip-172-31-38-10 ~]# docker run -d tutum/ubuntu:latest /bin/bash
+7406dc331c7583bece71679a31882e54d343c1ba462087ee1c0768a29444ab02
+[root@ip-172-31-38-10 ~]# docker run -d tutum/ubuntu:latest
+1c5b98079976b316af436d53a86f36db9b757bc05b59abef8e3333c9edcb2e33
+[root@ip-172-31-38-10 ~]# docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS               NAMES
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           46 seconds ago      Up 45 seconds       22/tcp              jovial_fermi
+[root@ip-172-31-38-10 ~]# docker ps -a
+CONTAINER ID        IMAGE                 COMMAND             CREATED              STATUS                     PORTS               NAMES
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           About a minute ago   Up About a minute          22/tcp              jovial_fermi
+7406dc331c75        tutum/ubuntu:latest   "/bin/bash"         2 minutes ago        Exited (0) 2 minutes ago                       kind_einstein
+76bf7189e4be        tutum/ubuntu:latest   "/bin/bash"         5 minutes ago        Exited (0) 2 minutes ago                       amazing_davinci
+[root@ip-172-31-38-10 ~]# docker run -d -p 8080:80 tutum/ubuntu:latest
+ba449bdd756ec7b3320ee0e43dda4bbffa2b362053262c6e177f407d0ca07910
+[root@ip-172-31-38-10 ~]# docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                          NAMES
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           37 seconds ago      Up 36 seconds       22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           5 minutes ago       Up 5 minutes        22/tcp                         jovial_fermi
+[root@ip-172-31-38-10 ~]# docker logs ba449bdd756e
+=> Setting a random password to the root user
+=> Done!
+======================================================================================================================================
+You can now connect to this Ubuntu container via SSH using:
+
+    ssh -p <port> root@<host>
+and enter the root password '2qFdglAx0pEX' when prompted
+
+Please remember to change the above password as soon as possible!
+=======================================================================================================================================
+[root@ip-172-31-38-10 ~]# docker logs stupefied_pasteur
+=> Setting a random password to the root user
+=> Done!
+=======================================================================================================================================
+You can now connect to this Ubuntu container via SSH using:
+
+    ssh -p <port> root@<host>
+and enter the root password '2qFdglAx0pEX' when prompted
+
+Please remember to change the above password as soon as possible!
+
+[root@ip-172-31-38-10 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+tutum/ubuntu        latest              7315f90732f7        2 years ago         252MB
+[root@ip-172-31-38-10 ~]# docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                          NAMES
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           13 minutes ago      Up 13 minutes       22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           18 minutes ago      Up 18 minutes       22/tcp                         jovial_fermi
+[root@ip-172-31-38-10 ~]# docker pull centos
+Using default tag: latest
+latest: Pulling from library/centos
+469cfcc7a4b3: Pull complete
+Digest: sha256:989b936d56b1ace20ddf855a301741e52abca38286382cba7f44443210e96d16
+Status: Downloaded newer image for centos:latest
+[root@ip-172-31-38-10 ~]# docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                          NAMES
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           13 minutes ago      Up 13 minutes       22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           19 minutes ago      Up 19 minutes       22/tcp                         jovial_fermi
+[root@ip-172-31-38-10 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+centos              latest              e934aafc2206        6 weeks ago         199MB
+tutum/ubuntu        latest              7315f90732f7        2 years ago         252MB
+[root@ip-172-31-38-10 ~]# docker run -i -t centos:latest /bin/bash
+[root@5fea01459282 /]# exit
+exit
+[root@ip-172-31-38-10 ~]# docker ps -a
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS                      PORTS                          NAMES
+5fea01459282        centos:latest         "/bin/bash"         18 seconds ago      Exited (0) 10 seconds ago                                  fervent_kalam
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           15 minutes ago      Up 15 minutes               22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           21 minutes ago      Up 21 minutes               22/tcp                         jovial_fermi
+7406dc331c75        tutum/ubuntu:latest   "/bin/bash"         21 minutes ago      Exited (0) 21 minutes ago                                  kind_einstein
+76bf7189e4be        tutum/ubuntu:latest   "/bin/bash"         24 minutes ago      Exited (0) 22 minutes ago                                  amazing_davinci
+[root@ip-172-31-38-10 ~]# docker run -d centos:latest
+f79378756cb04c73470fe1a1236dfd9b145a983cfa1a46e402adc29331129d1e
+[root@ip-172-31-38-10 ~]# docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                          NAMES
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           16 minutes ago      Up 16 minutes       22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           21 minutes ago      Up 21 minutes       22/tcp                         jovial_fermi
+[root@ip-172-31-38-10 ~]# docker run -p 8000:80  centos:latest
+[root@ip-172-31-38-10 ~]# docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                          NAMES
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           19 minutes ago      Up 19 minutes       22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           24 minutes ago      Up 24 minutes       22/tcp                         jovial_fermi
+[root@ip-172-31-38-10 ~]# docker ps -a
+CONTAINER ID        IMAGE                 COMMAND             CREATED              STATUS                      PORTS                          NAMES
+a810e32efd41        centos:latest         "/bin/bash"         20 seconds ago       Exited (0) 20 seconds ago                                  peaceful_cori
+da6e7745e24a        centos:latest         "/bin/bash"         55 seconds ago       Created                                                    kind_poincare
+b9279b62182a        centos:latest         "/bin/bash"         About a minute ago   Created                                                    fervent_snyder
+f79378756cb0        centos:latest         "/bin/bash"         3 minutes ago        Exited (0) 3 minutes ago                                   nifty_ritchie
+5fea01459282        centos:latest         "/bin/bash"         3 minutes ago        Exited (0) 3 minutes ago                                   fervent_kalam
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           19 minutes ago       Up 19 minutes               22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           24 minutes ago       Up 24 minutes               22/tcp                         jovial_fermi
+7406dc331c75        tutum/ubuntu:latest   "/bin/bash"         25 minutes ago       Exited (0) 25 minutes ago                                  kind_einstein
+76bf7189e4be        tutum/ubuntu:latest   "/bin/bash"         28 minutes ago       Exited (0) 25 minutes ago                                  amazing_davinci
+[root@ip-172-31-38-10 ~]# docker run -d -p 8000:80  centos:latest
+e3dde6db0166e6b8c544bb573ac81da0641a3f2a2226bf415535795f56adcfbb
+[root@ip-172-31-38-10 ~]# docker ps -a
+CONTAINER ID        IMAGE                 COMMAND             CREATED              STATUS                          PORTS                          NAMES
+e3dde6db0166        centos:latest         "/bin/bash"         6 seconds ago        Exited (0) 5 seconds ago                                       condescending_poincare
+a810e32efd41        centos:latest         "/bin/bash"         About a minute ago   Exited (0) About a minute ago                                  peaceful_cori
+da6e7745e24a        centos:latest         "/bin/bash"         2 minutes ago        Created                                                        kind_poincare
+b9279b62182a        centos:latest         "/bin/bash"         2 minutes ago        Created                                                        fervent_snyder
+f79378756cb0        centos:latest         "/bin/bash"         4 minutes ago        Exited (0) 4 minutes ago                                       nifty_ritchie
+5fea01459282        centos:latest         "/bin/bash"         5 minutes ago        Exited (0) 5 minutes ago                                       fervent_kalam
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           20 minutes ago       Up 20 minutes                   22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           26 minutes ago       Up 26 minutes                   22/tcp                         jovial_fermi
+7406dc331c75        tutum/ubuntu:latest   "/bin/bash"         26 minutes ago       Exited (0) 26 minutes ago                                      kind_einstein
+76bf7189e4be        tutum/ubuntu:latest   "/bin/bash"         29 minutes ago       Exited (0) 27 minutes ago                                      amazing_davinci
+[root@ip-172-31-38-10 ~]# docker rename peaceful_cori  komal
+[root@ip-172-31-38-10 ~]# docker ps -a
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS                      PORTS                          NAMES
+e3dde6db0166        centos:latest         "/bin/bash"         2 minutes ago       Exited (0) 2 minutes ago                                   condescending_poincare
+a810e32efd41        centos:latest         "/bin/bash"         4 minutes ago       Exited (0) 4 minutes ago                                   komal
+da6e7745e24a        centos:latest         "/bin/bash"         4 minutes ago       Created                                                    kind_poincare
+b9279b62182a        centos:latest         "/bin/bash"         5 minutes ago       Created                                                    fervent_snyder
+f79378756cb0        centos:latest         "/bin/bash"         7 minutes ago       Exited (0) 7 minutes ago                                   nifty_ritchie
+5fea01459282        centos:latest         "/bin/bash"         7 minutes ago       Exited (0) 7 minutes ago                                   fervent_kalam
+ba449bdd756e        tutum/ubuntu:latest   "/run.sh"           23 minutes ago      Up 23 minutes               22/tcp, 0.0.0.0:8080->80/tcp   stupefied_pasteur
+1c5b98079976        tutum/ubuntu:latest   "/run.sh"           28 minutes ago      Up 28 minutes               22/tcp                         jovial_fermi
+7406dc331c75        tutum/ubuntu:latest   "/bin/bash"         29 minutes ago      Exited (0) 29 minutes ago                                  kind_einstein
+76bf7189e4be        tutum/ubuntu:latest   "/bin/bash"         32 minutes ago      Exited (0) 29 minutes ago                                  amazing_davinci
+[root@ip-172-31-38-10 ~]# docker stats komal
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+a810e32efd41        komal               0.00%               0B / 0B             0.00%               0B / 0B             0B / 0B             0
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+a810e32efd41        komal               0.00%               0B / 0B             0.00%               0B / 0B             0B / 0B             0
+[1]+  Stopped                 docker stats komal
+[root@ip-172-31-38-10 ~]# docker stats stupefied_pasteur
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT     MEM %               NET I/O             BLOCK I/O           PIDS
+ba449bdd756e        stupefied_pasteur   0.00%               1.496MiB / 987.5MiB   0.15%               1.22kB / 0B         0B / 4.1kB          0
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT     MEM %               NET I/O             BLOCK I/O           PIDS
+[2]+  Stopped                 docker stats stupefied_pasteur
+[root@ip-172-31-38-10 ~]# docker top stupefied_pasteur
+UID      PID                 PPID                C                   STIME               TTY                 TIME         CMD
+root     25038               25015               0                   18:33               ?                   00:00:00  /usr/sbin/sshd -D
+[root@ip-172-31-38-10 ~]# base=https://github.com/docker/machine/releases/download/v0.14.0 &&
+>   curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+>   sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   617    0   617    0     0   2819      0 --:--:-- --:--:-- --:--:--  2830
+100 26.7M  100 26.7M    0     0  31.1M      0 --:--:-- --:--:-- --:--:-- 31.1M
+[root@ip-172-31-38-10 ~]# docker-machine version
+docker-machine version 0.14.0, build 89b8332
+[root@ip-172-31-38-10 ~]# docker-machine
+Usage: docker-machine [OPTIONS] COMMAND [arg...]
+
+Create and manage machines running Docker.
+
+Version: 0.14.0, build 89b8332
+
+Author:
+  Docker Machine Contributors - <https://github.com/docker/machine>
+
+Options:
+  --debug, -D                                   Enable debug mode
+  --storage-path, -s "/root/.docker/machine"    Configures storage path [$MACHINE_STORAGE_PATH]
+  --tls-ca-cert                                 CA to verify remotes against [$MACHINE_TLS_CA_CERT]
+  --tls-ca-key                                  Private key to generate certificates [$MACHINE_TLS_CA_KEY]
+  --tls-client-cert                             Client cert to use for TLS [$MACHINE_TLS_CLIENT_CERT]
+  --tls-client-key                              Private key used in client TLS auth [$MACHINE_TLS_CLIENT_KEY]
+  --github-api-token                            Token to use for requests to the Github API [$MACHINE_GITHUB_API_TOKEN]
+  --native-ssh                                  Use the native (Go-based) SSH implementation. [$MACHINE_NATIVE_SSH]
+  --bugsnag-api-token                           BugSnag API token for crash reporting [$MACHINE_BUGSNAG_API_TOKEN]
+  --help, -h                                    show help
+  --version, -v                                 print the version
+
+Commands:
+  active                Print which machine is active
+  config                Print the connection config for machine
+  create                Create a machine
+  env                   Display the commands to set up the environment for the Docker client
+  inspect               Inspect information about a machine
+  ip                    Get the IP address of a machine
+  kill                  Kill a machine
+  ls                    List machines
+  provision             Re-provision existing machines
+  regenerate-certs      Regenerate TLS Certificates for a machine
+  restart               Restart a machine
+  rm                    Remove a machine
+  ssh                   Log into or run a command on a machine with SSH.
+  scp                   Copy files between machines
+  mount                 Mount or unmount a directory from a machine with SSHFS.
+  start                 Start a machine
+  status                Get the status of a machine
+  stop                  Stop a machine
+  upgrade               Upgrade a machine to the latest version of Docker
+  url                   Get the URL of a machine
+  version               Show the Docker Machine version or a machine docker version
+  help                  Shows a list of commands or help for one command
+
+Run 'docker-machine COMMAND --help' for more information on a command.
+[root@ip-172-31-38-10 ~]# docker-machine create
+Usage: docker-machine create [OPTIONS] [arg...]
+
+Create a machine
+
+Description:
+   Run 'docker-machine create --driver name --help' to include the create flags for that driver in the help text.
+
+Options:
+
+   --driver, -d "virtualbox"                                                                            Driver to create machine with. [$MACHINE_DRIVER]
+   --engine-env [--engine-env option --engine-env option]                                               Specify environment variables to set in the engine
+   --engine-insecure-registry [--engine-insecure-registry option --engine-insecure-registry option]     Specify insecure registries to allow with the created engine
+   --engine-install-url "https://get.docker.com"                                                        Custom URL to use for engine installation [$MACHINE_DOCKER_INSTALL_URL]
+   --engine-label [--engine-label option --engine-label option]                                         Specify labels for the created engine
+   --engine-opt [--engine-opt option --engine-opt option]                                               Specify arbitrary flags to include with the created engine in the form flag=value
+   --engine-registry-mirror [--engine-registry-mirror option --engine-registry-mirror option]           Specify registry mirrors to use [$ENGINE_REGISTRY_MIRROR]
+   --engine-storage-driver                                                                              Specify a storage driver to use with the engine
+   --swarm                                                                                              Configure Machine to join a Swarm cluster
+   --swarm-addr                                                                                         addr to advertise for Swarm (default: detect and use the machine IP)
+   --swarm-discovery                                                                                    Discovery service to use with Swarm
+   --swarm-experimental                                                                                 Enable Swarm experimental features
+   --swarm-host "tcp://0.0.0.0:3376"                                                                    ip/socket to listen on for Swarm master
+   --swarm-image "swarm:latest"                                                                         Specify Docker image to use for Swarm [$MACHINE_SWARM_IMAGE]
+   --swarm-join-opt [--swarm-join-opt option --swarm-join-opt option]                                   Define arbitrary flags for Swarm join
+   --swarm-master                                                                                       Configure Machine to be a Swarm master
+   --swarm-opt [--swarm-opt option --swarm-opt option]                                                  Define arbitrary flags for Swarm master
+   --swarm-strategy "spread"                                                                            Define a default scheduling strategy for Swarm
+   --tls-san [--tls-san option --tls-san option]                                                        Support extra SANs for TLS certs
+   --virtualbox-boot2docker-url                                                                         The URL of the boot2docker image. Defaults to the latest available version [$VIRTUALBOX_BOOT2DOCKER_URL]
+   --virtualbox-cpu-count "1"                                                                           number of CPUs for the machine (-1 to use the number of CPUs available) [$VIRTUALBOX_CPU_COUNT]
+   --virtualbox-disk-size "20000"                                                                       Size of disk for host in MB [$VIRTUALBOX_DISK_SIZE]
+   --virtualbox-host-dns-resolver                                                                       Use the host DNS resolver [$VIRTUALBOX_HOST_DNS_RESOLVER]
+   --virtualbox-hostonly-cidr "192.168.99.1/24"                                                         Specify the Host Only CIDR [$VIRTUALBOX_HOSTONLY_CIDR]
+   --virtualbox-hostonly-nicpromisc "deny"                                                              Specify the Host Only Network Adapter Promiscuous Mode [$VIRTUALBOX_HOSTONLY_NIC_PROMISC]
+   --virtualbox-hostonly-nictype "82540EM"                                                              Specify the Host Only Network Adapter Type [$VIRTUALBOX_HOSTONLY_NIC_TYPE]
+   --virtualbox-hostonly-no-dhcp                                                                        Disable the Host Only DHCP Server [$VIRTUALBOX_HOSTONLY_NO_DHCP]
+   --virtualbox-import-boot2docker-vm                                                                   The name of a Boot2Docker VM to import [$VIRTUALBOX_BOOT2DOCKER_IMPORT_VM]
+   --virtualbox-memory "1024"                                                                           Size of memory for host in MB [$VIRTUALBOX_MEMORY_SIZE]
+   --virtualbox-nat-nictype "82540EM"                                                                   Specify the Network Adapter Type [$VIRTUALBOX_NAT_NICTYPE]
+   --virtualbox-no-dns-proxy                                                                            Disable proxying all DNS requests to the host [$VIRTUALBOX_NO_DNS_PROXY]
+   --virtualbox-no-share                                                                                Disable the mount of your home directory [$VIRTUALBOX_NO_SHARE]
+   --virtualbox-no-vtx-check                                                                            Disable checking for the availability of hardware virtualization before the vm is started [$VIRTUALBOX_NO_VTX_CHECK]
+   --virtualbox-share-folder                                                                            Mount the specified directory instead of the default home location. Format: dir:name [$VIRTUALBOX_SHARE_FOLDER]
+   --virtualbox-ui-type "headless"                                                                      Specify the UI Type: (gui|sdl|headless|separate) [$VIRTUALBOX_UI_TYPE]
+Error: No machine name specified
+[root@ip-172-31-38-10 ~]# docker-machine create -d virtualbox nodel
+Creating CA: /root/.docker/machine/certs/ca.pem
+Creating client certificate: /root/.docker/machine/certs/cert.pem
+Running pre-create checks...
+Error with pre-create check: "VBoxManage not found. Make sure VirtualBox is installed and VBoxManage is in the path"
+[root@ip-172-31-38-10 ~]# docker machine ls
+docker: 'machine' is not a docker command.
+See 'docker --help'
+[root@ip-172-31-38-10 ~]# docker -machine ls
+unknown shorthand flag: 'm' in -machine
+See 'docker --help'.
+
+Usage:  docker COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  checkpoint  Manage checkpoints
+  config      Manage Docker configs
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images (experimental)
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  deploy      Deploy a new stack or update an existing stack
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+[root@ip-172-31-38-10 ~]# docker-machine ls
+NAME   ACTIVE   DRIVER   STATE   URL   SWARM   DOCKER   ERRORS
+[root@ip-172-31-38-10 ~]# docker-machine create -d virtualbox komal
+Running pre-create checks...
+Error with pre-create check: "VBoxManage not found. Make sure VirtualBox is installed and VBoxManage is in the path"
+[root@ip-172-31-38-10 ~]# docker-machine create -d virtualbox1 komal
+Driver "virtualbox1" not found. Do you have the plugin binary "docker-machine-driver-virtualbox1" accessible in your PATH?
+[root@ip-172-31-38-10 ~]#  yum install virtualbox
+Loaded plugins: priorities, update-motd, upgrade-helper
+amzn-main                                                                                                         | 2.1 kB  00:00:00
+amzn-updates                                                                                                      | 2.5 kB  00:00:00
+No package virtualbox available.
+Error: Nothing to do
+[root@ip-172-31-38-10 ~]# sudo apt-get install virtualbox
+sudo: apt-get: command not found
+[root@ip-172-31-38-10 ~]# docker-machine create --driver virtualbox default
+Running pre-create checks...
+Error with pre-create check: "VBoxManage not found. Make sure VirtualBox is installed and VBoxManage is in the path"
+[root@ip-172-31-38-10 ~]# docker-machine create -d virtualbox mh-keystore
+Running pre-create checks...
+Error with pre-create check: "VBoxManage not found. Make sure VirtualBox is installed and VBoxManage is in the path"
+[root@ip-172-31-38-10 ~]# docker-machine ls
+NAME   ACTIVE   DRIVER   STATE   URL   SWARM   DOCKER   ERRORS
+[root@ip-172-31-38-10 ~]#
+Broadcast message from root@ip-172-31-38-10
+        (unknown) at 19:37 ...
+
+The system is going down for power off NOW!
+Connection to ec2-18-191-46-90.us-east-2.compute.amazonaws.com closed by remote host.
+Connection to ec2-18-191-46-90.us-east-2.compute.amazonaws.com closed.
+                                                                                                                                   
